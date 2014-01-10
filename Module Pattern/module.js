@@ -12,7 +12,7 @@ var testModule = (function() {
 			registerPatient(patientDetails);
 		},
 		getPatients: function(){
-			return getPatients();
+			return getPatients();//
 		}
 	};	
 }());
