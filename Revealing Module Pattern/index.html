@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title>Revealing Module Pattern</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+	<script src="./module.js"></script>
+</head>
+<body>
+<div class="page-header">
+  <h1>Revealing Module Pattern Sample <small>JavaScript Design Patterns</small></h1>
+</div>
+<ul class="nav nav-tabs">
+	  <li class="active"><a href="#patients" data-toggle="tab" id="patientsTab">Patients</a></li>
+	  <li><a href="#registration" data-toggle="tab">Register</a></li>	  
+</ul>
+<div class="tab-content">
+	<div class="tab-pane" id="patients">
+		<ul id="patientsList" class="list-group">
+		</ul>
+	</div>
+	<div class="tab-pane" id="registration">
+		<form name="input">
+				<div class="container">
+				  	<div class="control-group">
+						 <label class="control-label">Patient Name</label>
+						 <div class="controls">
+						  	<input id="name" class="form-control" type="text" class="input-xlarge"></input>
+			  			 </div>			
+					</div>
+					<div class="control-group">
+						 <label class="control-label">Patient Age</label>
+						  <div class="controls">
+						  	<input id="age" class="form-control" type="text" class="input-xlarge"></input>
+			  			 </div>	
+					</div>
+					<div class="control-group">
+						 <label class="control-label">Problem</label>
+						 <div class="controls">
+							  <input id="problem" class="form-control" type="text" class="input-xlarge"></input>
+			  			 </div>	
+					</div>	  
+				  <div class="control-group">
+				  	<input type="submit" class="btn btn-success btn-large" value="Register">
+				  </div>
+				</div>
+			</form>
+	</div>	
+</div>
+<script type="text/javascript">
+	$("form").on('submit', function (e) {
+	   testModule.registerPatient({name: $("#name").val(),
+								   	age: $("#age").val(),
+								   	problem: $("#problem").val()
+										});
+   		e.preventDefault();
+	});
+	$("#patientsTab").click(function(){
+		var patients = testModule.getPatients();
+		$('#patients ul:first').empty();
+		patients.forEach(function(patient){
+			$('#patients ul:first').append('<li class="list-group-item"> <div class="thumbnail"><div>'+ patient.name +'</div><div>'+ patient.age +'</div><div>'+ patient.problem +'</div></div></li>');
+		});		
+	});
+</script>
+</body>
+</html>
